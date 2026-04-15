@@ -1,0 +1,28 @@
+AWSTemplateFormateVersion: '2010-09-09'
+Description: Simple ec2-biult Template
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.micro
+      ImageId: ami-05d2d839d4f73aafb # Example AMI (change based on region)
+      keyName: server-key # Replace with your key pair name
+      SecurityGroupIds:
+        - sg-0123456789abcdef0 # Replace with your security group ID
+      Tags:
+        - Key: Name
+          Value: MyEC2Instance
+  MySecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH and HTTP access
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0/0
+        

@@ -1,0 +1,12 @@
+version : 0.2
+phases:
+  install:
+    commands:
+      - echo Installing AWS CLI...
+  build:
+    commands:
+      - apt-get update
+      - aws cloudformation deploy \
+          --template-file ec2-template.yml \
+          --stack-name MyEC2Stack \
+          --capabilities CAPABILITY_NAMED_IAM  
